@@ -12,21 +12,25 @@ import { COMMODITIES } 				from './commodities';
 
 @Component({
 	selector: 'trade',
+	styles: [`
+			ship-detail { float: left; }
+		`],
 	template: `
 		<div>
-			<h3>The Port of {{ports[0].name}}</h3>
-			<p>In {{ports[0].name}}  you can buy and sell commodities for these prices.</p>
+			<h3>The Port of {{ports[1].name}}</h3>
+			<p>In {{ports[1].name}}  you can buy and sell commodities for these prices.</p>
 			<table>
 				<tr><th>Commodity</th><th>Stock</th><th>Buy</th><th>Sell</th>
 				<tr *ngFor="let commodity of commodities; let i = index">
 					<td>{{commodity}}</td>
-					<td>{{ports[0].stock[i]}}</td>
-					<td><input type="button" (click)="buy(commodity, i, ports[0].buyPrice[i])" value="{{ports[0].buyPrice[i]}}" /></td>
-					<td><input type="button" (click)="sell(commodity, i, ports[0].sellPrice[i])" value="{{ports[0].sellPrice[i]}}" /></td>
+					<td>{{ports[1].stock[i]}}</td>
+					<td><input type="button" (click)="buy(commodity, i, ports[1].buyPrice[i])" value="{{ports[1].buyPrice[i]}}" /></td>
+					<td><input type="button" (click)="sell(commodity, i, ports[1].sellPrice[i])" value="{{ports[1].sellPrice[i]}}" /></td>
 				</tr>
 			</table>
-			<player-detail style="float: right"></player-detail>
 			<ship-detail></ship-detail>
+			<player-detail></player-detail>
+			
 			<input type="button" value="Back" (click)="goBack()" />
 		</div>
 	`,
@@ -63,22 +67,22 @@ export class TradeComponent {
 
 
 	buy(com: string, i: number, price: number): void {
-		if (this.players[0].duckets >= price && this.ships[0].available > 0 && this.ports[0].stock[i] > 0) { 
+		if (this.players[0].duckets >= price && this.ships[1].available > 0 && this.ports[1].stock[i] > 0) { 
 			this.players[0].duckets = +this.players[0].duckets - price; 
-			this.ships[0].cargo[i] = +this.ships[0].cargo[i] + 1;
-			this.ships[0].available = +this.ships[0].available - 1;
-			this.ports[0].stock[i] = +this.ports[0].stock[i] - 1;
-		}
-		console.log(com + " sold! at position " + i + " for a price of " + price);
+			this.ships[1].cargo[i] = +this.ships[1].cargo[i] + 1;
+			this.ships[1].available = +this.ships[1].available - 1;
+			this.ports[1].stock[i] = +this.ports[1].stock[i] - 1;
+			console.log(com + " sold! at position " + i + " for a price of " + price);
+		} else { console.log("Unable to buy " + i); }
 	}
 
 	sell(com: string, i: number, price: number): void {
-		if (this.ships[0].cargo[i] > 0) { 
+		if (this.ships[1].cargo[i] > 0) { 
 			this.players[0].duckets = +this.players[0].duckets + price; 
-			this.ships[0].cargo[i] = +this.ships[0].cargo[i] - 1;
-			this.ships[0].available = +this.ships[0].available + 1;
-			this.ports[0].stock[i] = +this.ports[0].stock[i] + 1
-		}
-		console.log(com + " sold! but for less money, at position " + i);
+			this.ships[1].cargo[i] = +this.ships[1].cargo[i] - 1;
+			this.ships[1].available = +this.ships[1].available + 1;
+			this.ports[1].stock[i] = +this.ports[1].stock[i] + 1
+			console.log(com + " sold! but for less money, at position " + i);
+		} else { console.log("Unable to sell " + i); }
 	}
 }

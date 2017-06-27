@@ -1,6 +1,6 @@
 <router-outlet></router-outlet>
 
-<!-- div>
+<div>
   <h2>Diagnostics</h2>
   <table>
     <tr>
@@ -12,20 +12,32 @@
       <td>{{players[0].duckets}}</td>
     </tr>
     <tr>
-      <td>Ship 0 Name</td>
-      <td>{{ships[0].name}}</td>
+      <td>Player 0 Destination</td>
+      <td>{{players[0].destination}}</td>
     </tr>
     <tr>
-      <td>Ship 0 Size</td>
-      <td>{{ships[0].size}}</td>
+      <td>destination</td>
+      <td>{{destination}}</td>
     </tr>
     <tr>
-      <td>Port 0 Name</td>
-      <td>{{ports[0].name}}</td>
+      <td>Ship index</td>
+      <td>{{shipIndex}}</td>
     </tr>
     <tr>
-      <td>Port 0 Stock 0 [{{commodities[0]}}]</td>
-      <td>{{ports[0].stock[0]}}</td>
+      <td>Ship {{shipIndex}} Name</td>
+      <td>{{ships[shipIndex].name}}</td>
+    </tr>
+    <tr>
+      <td>Ship {{shipIndex}} Size</td>
+      <td>{{ships[shipIndex].size}}</td>
+    </tr>
+    <tr>
+      <td>Port {{portIndex}} Name</td>
+      <td>{{ports[portIndex].name}}</td>
+    </tr>
+    <tr>
+      <td>Port {{portIndex}} Stock 0 [{{commodities[0]}}]</td>
+      <td>{{ports[portIndex].stock[0]}}</td>
     </tr>
   </table>
-</div -->
+</div>

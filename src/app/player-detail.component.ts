@@ -23,7 +23,7 @@ import { COMMODITIES }				from './commodities';
 				</tr>
 	    		<tr>
 	    			<td>Ship Hold: </td>
-	    			<td>{{ships[0].size}}({{ships[0].available}})</td>
+	    			<td>{{ships[1].size}}({{ships[1].available}})</td>
 				</tr>
 			</table>
 		</div>

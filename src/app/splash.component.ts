@@ -17,6 +17,7 @@ import { Location }					from '@angular/common';
 		  <input type="button" value="How To" routerLink="/how-to" />
 		</div>
 	`,
+	styleUrls: ['./splash.component.css'],
 	providers: []
 })
 

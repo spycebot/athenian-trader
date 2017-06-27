@@ -9,11 +9,7 @@ import { WinComponent }		from './win.component';
 import { LoseComponent }	from './lose.component';
 import { PortComponent }	from './port.component';
 import { TradeComponent }	from './trade.component';
-/*
-import { DashboardComponent }	from './dashboard.component';
-import { HeroesComponent }		from './heroes.component';
-import { HeroDetailComponent }	from './hero-detail.component';
-*/
+import { SetSailComponent }	from './set-sail.component';
 
 const routes: Routes = [
 	{ path: '', redirectTo: 'splash', pathMatch: 'full' },
@@ -23,7 +19,8 @@ const routes: Routes = [
 	{ path: 'win', component: WinComponent },
 	{ path: 'lose', component: LoseComponent },
 	{ path: 'port', component: PortComponent },
-	{ path: 'trade', component: TradeComponent }
+	{ path: 'port/trade', component: TradeComponent },
+	{ path: 'port/set-sail', component: SetSailComponent }
 ];
 
 @NgModule({

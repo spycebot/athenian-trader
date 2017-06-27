@@ -15,11 +15,15 @@ import { PortService }			from './port.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
   commodities = COMMODITIES;
   players: Player[];
   ports: Port[];
   ships: Ship[];
+  destination: number = 0;
+  shipIndex: number = 1;
+  portIndex: number = 1;
   constructor(
   	private playerService: PlayerService,
   	private shipService: ShipService,
@@ -31,6 +35,7 @@ export class AppComponent {
     this.getPlayers();
     this.getShips();
     this.getPorts();
+    //console.log(players[0].destination);
   }
 
   getPlayers(): void {

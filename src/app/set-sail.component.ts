@@ -8,30 +8,30 @@ import { PlayerService }			from './player.service';
 import { ShipService }				from './ship.service';
 import { PortService }				from './port.service';
 
-import { COMMODITIES }				from './commodities';
+import { COMMODITIES } 				from './commodities';
 
 @Component({
-	selector: 'ship-detail',
+	selector: 'set-sail',
+	styles: [`
+			ship-detail { float: left; }
+		`],
 	template: `
-	
 		<div>
-		  <h4>Cargo on your ship {{ships[1].name}}</h4>
-			<table>
-	    		<tr *ngFor="let cargo of ships[1].cargo; let i  = index">
-	    			<td>{{commodities[i]}}</td>
-	    			<td>{{cargo}}</td>
-				</tr>
-			</table>
+			<h3>The Port of {{ports[0].name}}</h3>
+			<p>To where shall we set sail, {{players[0].name}}?</p>
+			<ul>
+				<li *ngFor="let port of ports; let i = index">
+					<input type="button" (click)="sailTo(i)" value="{{ports[i].name}}" />
+				</li>
+			</ul>
+
+			<input type="button" value="Back" (click)="goBack()" />
 		</div>
 	`,
-	providers: [ 
-		PlayerService,
-		ShipService,
-		PortService
-	]
+	providers: [ PlayerService ]
 })
 
-export class ShipDetailComponent {
+export class SetSailComponent {
   	players: Player[];
   	ships: Ship[];
   	ports: Port[];
@@ -39,7 +39,9 @@ export class ShipDetailComponent {
 	constructor(
 		private playerService: PlayerService,
 		private shipService: ShipService,
-		private portService: PortService
+		private portService: PortService,
+		private route: ActivatedRoute,
+		private location: Location
 	) { }
 
 	/* getPlayer(): void {
@@ -50,5 +52,15 @@ export class ShipDetailComponent {
 		this.players = this.playerService.getPlayers();
 		this.ships = this.shipService.getShips();
 		this.ports = this.portService.getPorts();
+	}
+
+	goBack(): void {
+	  this.location.back();
+	}
+
+
+
+	sailTo(i: number): void {
+
 	}
 }

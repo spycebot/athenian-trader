@@ -14,16 +14,8 @@ import { PortService }				from './port.service';
 		<div>
 			<h3>The Port of {{ports[0].name}}</h3>
 			<p>Buy and sell! Here are the local prices. What they are selling is what you are buying. Click on a price to buy or sell.</p>
-			<table>
-			<tr><th>Commodity</th><th>Sell</th><th>Buy</th>
-			<tr *ngFor="let commodity of commodities; let i = index">
-				<td>{{commodity}}</td>
-				<td (click)="sell(commodity, i, port.sellPrice[i])">{{port.sellPrice[i]}}</td>
-				<td (click)="buy(commodity, i, port.buyPrice[i])">{{port.buyPrice[i]}}</td>
-			</tr>
-			</table>
-			<input type="button" value="Set Sail" disabled />
-			<input type="button" value="Trade" routerLink="/trade" />
+			<input type="button" value="Set Sail" routerLink="/port/set-sail" />
+			<input type="button" value="Trade" routerLink="/port/trade" />
 			<input type="button" value="Visit Warehouse" disabled />
 			<input type="button" value="Borrow Money" disabled />
 		</div>
