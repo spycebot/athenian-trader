@@ -22,14 +22,13 @@ import { ShipService }				from './ship.service';
 					<td><input [(ngModel)]="ships[0].name" placeholder="Ship Name"></td>
 				</tr>
 			</table>
-		  	<input type="button" value="Next" routerLink="/new-game" />
+		  	<input type="button" value="Next" routerLink="/win" />
 		</div>
 	`,
 	providers: [ PlayerService ]
 })
 
 export class NewGameComponent {
-	//@Input() player: Player;
   	players: Player[];
   	ships: Ship[];
 	constructor(

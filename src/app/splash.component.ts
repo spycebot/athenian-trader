@@ -13,7 +13,7 @@ import { Location }					from '@angular/common';
 		  <img src="assets/atFallback.jpg" alt="Constantine Volanakis"/>
 		<!-- /object -->
 		  <p id="builtBy">Built by Shannon Ware in Ireland.</p>
-		  <input type="button" value="Start" />
+		  <input type="button" value="New Game" routerLink="/new-game" />
 		  <input type="button" value="How To" routerLink="/how-to" />
 		</div>
 	`,
