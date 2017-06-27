@@ -1,0 +1,1 @@
+export const COMMODITIES = ['Wheat', 'Wine', 'Fabrics', 'Marbles'];

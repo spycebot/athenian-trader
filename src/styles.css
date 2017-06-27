@@ -1,1 +1,31 @@
-/* You can add global styles to this file, and also import other style files */
+svg { border: 4px solid grey; }
+td { cursor: pointer; }
+@import url(https://fonts.googleapis.com/css?family=Bubblegum+Sans|Mirza|Overlock|Port+Lligat+Sans|Skranji);
+
+body { font-size : 24px; }
+p {
+	font-family: 'Overlock', cursive;; 
+}
+
+h1 {
+	font-family: 'Skranji', cursive; 
+}
+
+h2, h4, h6 {
+	font-family: 'Overlock', monospace; 
+}
+
+h3, h5 {
+	font-family: 'Port Lligat Sans', sans-serif;
+}
+
+table { font-family: 'Overlock', cursive; }
+
+input { font-family: 'Overlock', monospace; font-size: 1.4em; }
+
+input[type="button"] {  }
+
+label { font-family: 'Overlock', monospace;  }
+
+/* button { width : 100%; } */
+#builtBy { font-size: 12px; }
