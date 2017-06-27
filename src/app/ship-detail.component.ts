@@ -3,41 +3,43 @@ import { ActivatedRoute, Params }	from '@angular/router';
 import { Location }					from '@angular/common';
 import { Player } 					from './player';
 import { Ship } 					from './ship';
+import { Port } 					from './port';
 import { PlayerService }			from './player.service';
 import { ShipService }				from './ship.service';
+import { PortService }				from './port.service';
+
+import { COMMODITIES }				from './commodities';
 
 @Component({
-	selector: 'new-game',
+	selector: 'ship-detail',
 	template: `
 	
 		<div>
-		  <h2>New Game</h2>
+		  <h4>Cargo on your ship {{ships[0].name}}</h4>
 			<table>
-				<tr>
-					<td>Name: </td>
-					<td><input [(ngModel)]="players[0].name" placeholder="Player Name"></td>
-				</tr>
-				<tr>
-					<td>Ship: </td>
-					<td><input [(ngModel)]="ships[0].name" placeholder="Ship Name"></td>
-				</tr>
-				<tr>
-					<td>Cash: </td>
-					<td><input [(ngModel)]="players[0].duckets" placeholder="Cashola"></td>
+	    		<tr *ngFor="let cargo of ships[0].cargo; let i  = index">
+	    			<td>{{commodities[i]}}</td>
+	    			<td>{{cargo}}</td>
 				</tr>
 			</table>
-		  	<input type="button" value="Start Game" routerLink="/port" />
 		</div>
 	`,
-	providers: [ PlayerService ]
+	providers: [ 
+		PlayerService,
+		ShipService,
+		PortService
+	]
 })
 
-export class NewGameComponent {
+export class ShipDetailComponent {
   	players: Player[];
   	ships: Ship[];
+  	ports: Port[];
+  	commodities = COMMODITIES;
 	constructor(
 		private playerService: PlayerService,
-		private shipService: ShipService
+		private shipService: ShipService,
+		private portService: PortService
 	) { }
 
 	/* getPlayer(): void {
@@ -47,5 +49,6 @@ export class NewGameComponent {
 	ngOnInit(): void {
 		this.players = this.playerService.getPlayers();
 		this.ships = this.shipService.getShips();
+		this.ports = this.portService.getPorts();
 	}
 }

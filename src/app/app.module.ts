@@ -14,6 +14,10 @@ import { HowToComponent }    		from './how-to.component';
 import { NewGameComponent }     	from './new-game.component';
 import { WinComponent }     		from './win.component';
 import { LoseComponent }     		from './lose.component';
+import { PortComponent }     		from './port.component';
+import { TradeComponent }     		from './trade.component';
+import { ShipDetailComponent }     	from './ship-detail.component';
+import { PlayerDetailComponent }     from './player-detail.component';
 
 import { PlayerService }          	from './player.service';
 import { PortService }          	from './port.service';
@@ -28,7 +32,11 @@ import { AppRoutingModule }		from './app-routing.module';
     SplashComponent,
     NewGameComponent,
     WinComponent,
-    LoseComponent
+    LoseComponent,
+    PortComponent,
+    TradeComponent,
+    ShipDetailComponent,
+    PlayerDetailComponent
   ],
   imports: [
     BrowserModule,

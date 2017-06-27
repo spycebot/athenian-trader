@@ -7,6 +7,8 @@ import { SplashComponent }	from './splash.component';
 import { NewGameComponent }	from './new-game.component';
 import { WinComponent }		from './win.component';
 import { LoseComponent }	from './lose.component';
+import { PortComponent }	from './port.component';
+import { TradeComponent }	from './trade.component';
 /*
 import { DashboardComponent }	from './dashboard.component';
 import { HeroesComponent }		from './heroes.component';
@@ -19,7 +21,9 @@ const routes: Routes = [
 	{ path: 'how-to', component: HowToComponent },
 	{ path: 'new-game', component: NewGameComponent },
 	{ path: 'win', component: WinComponent },
-	{ path: 'lose', component: LoseComponent }
+	{ path: 'lose', component: LoseComponent },
+	{ path: 'port', component: PortComponent },
+	{ path: 'trade', component: TradeComponent }
 ];
 
 @NgModule({

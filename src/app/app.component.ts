@@ -16,7 +16,6 @@ import { PortService }			from './port.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Athenian Trader';
   commodities = COMMODITIES;
   players: Player[];
   ports: Port[];
