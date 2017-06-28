@@ -1,10 +1,10 @@
 export class Player {
-  	id: Number;
+  	id: number;
   	name: string;
-  	duckets: Number;
-  	destination: Number;
-  	currentPort: Number;
-  	ship: Number;
+  	duckets: number;
+  	destination: number;
+  	currentPort: number;
+  	ship: number;
 
   	constructor() {
 	  	this.id = 0;

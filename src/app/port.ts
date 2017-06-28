@@ -1,9 +1,9 @@
 export class Port {
-	id: Number;
+	id: number;
 	name: string;
-	stock: Number[];
-	sellPrice: Number[];
-	buyPrice: Number[];
+	stock: number[];
+	sellPrice: number[];
+	buyPrice: number[];
 
 	constructor() {
 		this.id = 0,

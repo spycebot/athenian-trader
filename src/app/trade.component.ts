@@ -14,6 +14,7 @@ import { COMMODITIES } 				from './commodities';
 	selector: 'trade',
 	styles: [`
 			ship-detail { float: left; }
+			input { width: 100%; }
 		`],
 	template: `
 		<div>
@@ -23,7 +24,7 @@ import { COMMODITIES } 				from './commodities';
 				<tr><th>Commodity</th><th>Stock</th><th>Buy</th><th>Sell</th>
 				<tr *ngFor="let commodity of commodities; let i = index">
 					<td>{{commodity}}</td>
-					<td>{{ports[+this.player.currentPort].stock[i]}}</td>
+					<td>{{ports[+player.currentPort].stock[i]}}</td>
 					<td><input type="button" (click)="buy(commodity, i, ports[+player.currentPort].buyPrice[i])" value="{{ports[+player.currentPort].buyPrice[i]}}" /></td>
 					<td><input type="button" (click)="sell(commodity, i, ports[+player.currentPort].sellPrice[i])" value="{{ports[+player.currentPort].sellPrice[i]}}" /></td>
 				</tr>

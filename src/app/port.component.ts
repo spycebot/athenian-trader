@@ -12,8 +12,8 @@ import { PortService }				from './port.service';
 	selector: 'port',
 	template: `
 		<div>
-			<h3>The Port of {{ports[player.currentPort].name}}</h3>
-			<p>Welcome {{ports[player.currentPort].name}}. Visit the teaming market to trade!</p>
+			<h3>The Port of {{ports[+player.currentPort].name}}</h3>
+			<p>Welcome {{ports[+player.currentPort].name}}. Visit the teaming market to trade!</p>
 			<input type="button" value="Set Sail" routerLink="/port/set-sail" />
 			<input type="button" value="Trade" routerLink="/port/trade" />
 			<input type="button" value="Visit Warehouse" disabled />

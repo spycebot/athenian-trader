@@ -18,7 +18,7 @@ import { COMMODITIES } 				from './commodities';
 	template: `
 		<div>
 			<h3>At Sea</h3>
-			<p>It is smooth saling, {{player.name}}. We are arriving at {{ports[player.destination].name}}.</p>
+			<p>It is smooth saling, {{player.name}}. We are arriving at {{ports[+player.destination].name}}.</p>
 			
 			<input type="button" value="Next" (click)="arriveAtPort()" routerLink="/port" />
 		</div>
