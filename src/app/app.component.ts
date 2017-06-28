@@ -35,7 +35,6 @@ export class AppComponent {
     this.getPlayers();
     this.getShips();
     this.getPorts();
-    //console.log(players[0].destination);
   }
 
   getPlayers(): void {

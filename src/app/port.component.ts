@@ -12,7 +12,7 @@ import { PortService }				from './port.service';
 	selector: 'port',
 	template: `
 		<div>
-			<h3>The Port of {{ports[0].name}}</h3>
+			<h3>The Port of {{ports[1].name}}</h3>
 			<p>Buy and sell! Here are the local prices. What they are selling is what you are buying. Click on a price to buy or sell.</p>
 			<input type="button" value="Set Sail" routerLink="/port/set-sail" />
 			<input type="button" value="Trade" routerLink="/port/trade" />

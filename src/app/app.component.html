@@ -12,10 +12,6 @@
       <td>{{players[0].duckets}}</td>
     </tr>
     <tr>
-      <td>Player 0 Destination</td>
-      <td>{{players[0].destination}}</td>
-    </tr>
-    <tr>
       <td>destination</td>
       <td>{{destination}}</td>
     </tr>
@@ -38,6 +34,11 @@
     <tr>
       <td>Port {{portIndex}} Stock 0 [{{commodities[0]}}]</td>
       <td>{{ports[portIndex].stock[0]}}</td>
+    </tr>
+    <tr>
+      <td colspan="2"><input type="button" value="Win" routerLink="/win" />
+      <td colspan="2"><input type="button" value="Lose" routerLink="/lose" /></td>
+      <td colspan="2"><input type="button" value="Restart" routerLink="/new-game" /></td>
     </tr>
   </table>
 </div>

@@ -12,7 +12,7 @@ import { TradeComponent }	from './trade.component';
 import { SetSailComponent }	from './set-sail.component';
 
 const routes: Routes = [
-	{ path: '', redirectTo: 'splash', pathMatch: 'full' },
+	{ path: '', redirectTo: '/splash', pathMatch: 'full' },
 	{ path: 'splash', component: SplashComponent },
 	{ path: 'how-to', component: HowToComponent },
 	{ path: 'new-game', component: NewGameComponent },
