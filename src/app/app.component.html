@@ -1,8 +1,17 @@
 <router-outlet></router-outlet>
 
-<div>
+
   <h2>Diagnostics</h2>
+
+  <div *ngIf="!atDebug">
+    <input type="button" value="Debug" (click)="toggleDebug()" />
+  </div>
+
+  <div *ngIf="atDebug">
   <table>
+    <tr>
+      <td colspan="2"><input type="button" value="Close" (click)="toggleDebug()" /></td>
+    </tr>
     <tr>
       <td>Player 0 Name</td>
       <td>{{players[0].name}}</td>
@@ -12,8 +21,24 @@
       <td>{{players[0].duckets}}</td>
     </tr>
     <tr>
+      <td>Player 0 Destination</td>
+      <td>{{players[0].destination}}</td>
+    </tr>
+    <tr>
+      <td>Player 0 currentPort</td>
+      <td>{{players[0].currentPort}}</td>
+    </tr>
+    <tr>
+      <td>Player 0 ship</td>
+      <td>{{players[0].ship}}</td>
+    </tr>
+    <tr>
       <td>destination</td>
       <td>{{destination}}</td>
+    </tr>
+    <tr>
+      <td>player name</td>
+      <td>{{player.name}}</td>
     </tr>
     <tr>
       <td>Ship index</td>
@@ -28,6 +53,10 @@
       <td>{{ships[shipIndex].size}}</td>
     </tr>
     <tr>
+      <td>Port index</td>
+      <td>{{portIndex}}</td>
+    </tr>
+    <tr>
       <td>Port {{portIndex}} Name</td>
       <td>{{ports[portIndex].name}}</td>
     </tr>
@@ -36,8 +65,12 @@
       <td>{{ports[portIndex].stock[0]}}</td>
     </tr>
     <tr>
-      <td colspan="2"><input type="button" value="Win" routerLink="/win" />
+      <td colspan="2"><input type="button" value="Win" routerLink="/win" /></td>
+    </tr>
+    <tr>
       <td colspan="2"><input type="button" value="Lose" routerLink="/lose" /></td>
+    </tr>
+    <tr>
       <td colspan="2"><input type="button" value="Restart" routerLink="/new-game" /></td>
     </tr>
   </table>

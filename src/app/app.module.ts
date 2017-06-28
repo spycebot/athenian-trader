@@ -19,6 +19,7 @@ import { TradeComponent }     		from './trade.component';
 import { ShipDetailComponent }     	from './ship-detail.component';
 import { PlayerDetailComponent }    from './player-detail.component';
 import { SetSailComponent }     	from './set-sail.component';
+import { AtSeaComponent }   	  	from './at-sea.component';
 
 import { PlayerService }          	from './player.service';
 import { PortService }          	from './port.service';
@@ -38,7 +39,8 @@ import { AppRoutingModule }		from './app-routing.module';
     TradeComponent,
     ShipDetailComponent,
     PlayerDetailComponent,
-    SetSailComponent
+    SetSailComponent,
+    AtSeaComponent
   ],
   imports: [
     BrowserModule,

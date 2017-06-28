@@ -11,32 +11,27 @@ import { PortService }				from './port.service';
 import { COMMODITIES } 				from './commodities';
 
 @Component({
-	selector: 'set-sail',
+	selector: 'trade',
 	styles: [`
 			ship-detail { float: left; }
 		`],
 	template: `
 		<div>
-			<h3>The Port of {{ports[1].name}}</h3>
-			<p>To where shall we set sail, {{players[0].name}}?</p>
-			<ul>
-				<li *ngFor="let port of ports; let i = index">
-					<input type="button" (click)="sailTo(i)" value="{{ports[i].name}}" routerLink="/at-sea" />
-				</li>
-			</ul>
-
-			<input type="button" value="Back" (click)="goBack()" />
+			<h3>At Sea</h3>
+			<p>It is smooth saling, {{player.name}}. We are arriving at {{ports[player.destination].name}}.</p>
+			
+			<input type="button" value="Next" (click)="arriveAtPort()" routerLink="/port" />
 		</div>
 	`,
 	providers: [ PlayerService ]
 })
 
-export class SetSailComponent {
+export class AtSeaComponent {
   	players: Player[];
   	ships: Ship[];
   	ports: Port[];
-  	commodities = COMMODITIES;
   	player: Player;
+  	commodities = COMMODITIES;
 	constructor(
 		private playerService: PlayerService,
 		private shipService: ShipService,
@@ -45,10 +40,6 @@ export class SetSailComponent {
 		private location: Location
 	) { }
 
-	/* getPlayer(): void {
-		this.player = this.playerService.getPlayer();
-	} */
-
 	ngOnInit(): void {
 		this.players = this.playerService.getPlayers();
 		this.ships = this.shipService.getShips();
@@ -56,13 +47,7 @@ export class SetSailComponent {
 		this.player = this.players[0];
 	}
 
-	goBack(): void {
-	  this.location.back();
-	}
-
-
-
-	sailTo(i: number): void {
-		this.player.destination = i;
+	arriveAtPort(): void {
+		this.player.currentPort = this.player.destination;
 	}
 }

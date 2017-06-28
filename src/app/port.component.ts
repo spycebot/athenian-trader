@@ -12,8 +12,8 @@ import { PortService }				from './port.service';
 	selector: 'port',
 	template: `
 		<div>
-			<h3>The Port of {{ports[1].name}}</h3>
-			<p>Buy and sell! Here are the local prices. What they are selling is what you are buying. Click on a price to buy or sell.</p>
+			<h3>The Port of {{ports[player.currentPort].name}}</h3>
+			<p>Welcome {{ports[player.currentPort].name}}. Visit the teaming market to trade!</p>
 			<input type="button" value="Set Sail" routerLink="/port/set-sail" />
 			<input type="button" value="Trade" routerLink="/port/trade" />
 			<input type="button" value="Visit Warehouse" disabled />
@@ -27,19 +27,18 @@ export class PortComponent {
   	players: Player[];
   	ships: Ship[];
   	ports: Port[];
+  	player: Player;
+
 	constructor(
 		private playerService: PlayerService,
 		private shipService: ShipService,
 		private portService: PortService
 	) { }
 
-	/* getPlayer(): void {
-		this.player = this.playerService.getPlayer();
-	} */
-
 	ngOnInit(): void {
 		this.players = this.playerService.getPlayers();
 		this.ships = this.shipService.getShips();
 		this.ports = this.portService.getPorts();
+		this.player = this.players[0];
 	}
 }

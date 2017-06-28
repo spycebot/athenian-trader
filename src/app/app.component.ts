@@ -13,7 +13,8 @@ import { PortService }			from './port.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [Player]
 })
 
 export class AppComponent {
@@ -24,10 +25,12 @@ export class AppComponent {
   destination: number = 0;
   shipIndex: number = 1;
   portIndex: number = 1;
+  atDebug: boolean = false;
   constructor(
   	private playerService: PlayerService,
   	private shipService: ShipService,
-  	private portService: PortService
+  	private portService: PortService,
+  	private player: Player
   ) { }
 
 
@@ -47,5 +50,9 @@ export class AppComponent {
 
   getPorts(): void {
     this.ports = this.portService.getPorts();
+  }
+
+  toggleDebug(): void {
+  	this.atDebug = !this.atDebug;
   }
 }

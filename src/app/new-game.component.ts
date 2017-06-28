@@ -15,7 +15,7 @@ import { ShipService }				from './ship.service';
 			<table>
 				<tr>
 					<td>Name: </td>
-					<td><input [(ngModel)]="players[0].name" placeholder="Player Name"></td>
+					<td><input [(ngModel)]="currentPlayer.name" placeholder="Player Name"></td>
 				</tr>
 				<tr>
 					<td>Ship: </td>
@@ -23,7 +23,7 @@ import { ShipService }				from './ship.service';
 				</tr>
 				<tr>
 					<td>Cash: </td>
-					<td><input [(ngModel)]="players[0].duckets" placeholder="Cashola"></td>
+					<td><input [(ngModel)]="currentPlayer.duckets" placeholder="Cashola"></td>
 				</tr>
 			</table>
 		  	<input type="button" value="Start Game" routerLink="/port" />
@@ -35,6 +35,7 @@ import { ShipService }				from './ship.service';
 export class NewGameComponent {
   	players: Player[];
   	ships: Ship[];
+  	currentPlayer: Player;
 	constructor(
 		private playerService: PlayerService,
 		private shipService: ShipService
@@ -47,5 +48,9 @@ export class NewGameComponent {
 	ngOnInit(): void {
 		this.players = this.playerService.getPlayers();
 		this.ships = this.shipService.getShips();
+		//this.players[0].currentPort = 1;
+		this.currentPlayer = this.players[0];
+		this.currentPlayer.currentPort = 1;
+		this.currentPlayer.ship = 1;
 	}
 }

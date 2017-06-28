@@ -10,6 +10,7 @@ import { LoseComponent }	from './lose.component';
 import { PortComponent }	from './port.component';
 import { TradeComponent }	from './trade.component';
 import { SetSailComponent }	from './set-sail.component';
+import { AtSeaComponent }   from './at-sea.component';
 
 const routes: Routes = [
 	{ path: '', redirectTo: '/splash', pathMatch: 'full' },
@@ -20,7 +21,8 @@ const routes: Routes = [
 	{ path: 'lose', component: LoseComponent },
 	{ path: 'port', component: PortComponent },
 	{ path: 'port/trade', component: TradeComponent },
-	{ path: 'port/set-sail', component: SetSailComponent }
+	{ path: 'port/set-sail', component: SetSailComponent },
+	{ path: 'at-sea', component: AtSeaComponent }
 ];
 
 @NgModule({
