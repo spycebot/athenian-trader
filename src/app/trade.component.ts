@@ -42,8 +42,10 @@ export class TradeComponent {
   	players: Player[];
   	ships: Ship[];
   	ports: Port[];
+  	port: Port;
   	commodities = COMMODITIES;
   	player: Player;
+  	NUMERATOR: Number = 10000;
 	constructor(
 		private playerService: PlayerService,
 		private shipService: ShipService,
@@ -61,13 +63,12 @@ export class TradeComponent {
 		this.ships = this.shipService.getShips();
 		this.ports = this.portService.getPorts();
 		this.player = this.players[0];
+		this.port = this.ports[this.player.currentPort];
 	}
 
 	goBack(): void {
 	  this.location.back();
 	}
-
-
 
 	buy(com: string, i: number, price: number): void {
 		if (this.player.duckets >= price && this.ships[+this.player.ship].available > 0 && this.ports[+this.player.currentPort].stock[i] > 0) { 
@@ -75,6 +76,7 @@ export class TradeComponent {
 			this.ships[+this.player.ship].cargo[i] = +this.ships[+this.player.ship].cargo[i] + 1;
 			this.ships[+this.player.ship].available = +this.ships[+this.player.ship].available - 1;
 			this.ports[+this.player.currentPort].stock[i] = +this.ports[+this.player.currentPort].stock[i] - 1;
+			this.setPrice(i);
 			console.log(com + " sold! at position " + i + " for a price of " + price);
 		} else { console.log("Unable to buy " + i); }
 	}
@@ -84,8 +86,17 @@ export class TradeComponent {
 			this.player.duckets = +this.player.duckets + price; 
 			this.ships[+this.player.ship].cargo[i] = +this.ships[+this.player.ship].cargo[i] - 1;
 			this.ships[+this.player.ship].available = +this.ships[+this.player.ship].available + 1;
-			this.ports[+this.player.currentPort].stock[i] = +this.ports[+this.player.currentPort].stock[i] + 1
+			this.ports[+this.player.currentPort].stock[i] = +this.ports[+this.player.currentPort].stock[i] + 1;
+			this.setPrice(i);
 			console.log(com + " sold! but for less money, at position " + i);
 		} else { console.log("Unable to sell " + i); }
+	}
+
+
+
+	setPrice(i: number): void {
+		if (this.port.stock[i] > 0) {
+			this.port.buyPrice[i] = Math.floor(+this.NUMERATOR / 0.833 / (+this.port.stock[i]));
+			this.port.sellPrice[i] = Math.floor(+this.NUMERATOR / 1.25 / (+this.port.stock[i]));}
 	}
 }

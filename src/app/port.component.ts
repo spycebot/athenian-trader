@@ -10,10 +10,14 @@ import { PortService }				from './port.service';
 
 @Component({
 	selector: 'port',
+	styles: [`
+		img { width: 256px; }
+	`],
 	template: `
 		<div>
-			<h3>The Port of {{ports[+player.currentPort].name}}</h3>
-			<p>Welcome {{ports[+player.currentPort].name}}. Visit the teaming market to trade!</p>
+			<h3>The Port of {{port.name}}</h3>
+			<img src="assets/1024px-akropolis_by_leo_von_klenze1.jpg"  alt="Leo von Klenze" />
+			<p>Welcome {{port.name}}. Visit the teaming market to trade!</p>
 			<input type="button" value="Set Sail" routerLink="/port/set-sail" />
 			<input type="button" value="Trade" routerLink="/port/trade" />
 			<input type="button" value="Visit Warehouse" disabled />
@@ -28,6 +32,7 @@ export class PortComponent {
   	ships: Ship[];
   	ports: Port[];
   	player: Player;
+  	port: Port;
 
 	constructor(
 		private playerService: PlayerService,
@@ -40,5 +45,7 @@ export class PortComponent {
 		this.ships = this.shipService.getShips();
 		this.ports = this.portService.getPorts();
 		this.player = this.players[0];
+		this.port = this.ports[this.player.currentPort];
+		//console.log("PortComponent port.landscape: " + this.port.landscape);
 	}
 }

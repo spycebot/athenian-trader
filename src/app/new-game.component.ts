@@ -15,18 +15,18 @@ import { ShipService }				from './ship.service';
 			<table>
 				<tr>
 					<td>Name: </td>
-					<td><input [(ngModel)]="currentPlayer.name" placeholder="Player Name"></td>
+					<td><input [(ngModel)]="player.name" placeholder="Player Name"></td>
 				</tr>
 				<tr>
 					<td>Ship: </td>
-					<td><input [(ngModel)]="ships[0].name" placeholder="Ship Name"></td>
+					<td><input [(ngModel)]="ships[player.ship].name" placeholder="Ship Name"></td>
 				</tr>
 				<tr>
 					<td>Cash: </td>
-					<td><input [(ngModel)]="currentPlayer.duckets" placeholder="Cashola"></td>
+					<td><input [(ngModel)]="player.duckets" placeholder="Cashola"></td>
 				</tr>
 			</table>
-		  	<input type="button" value="Start Game" routerLink="/port" />
+		  	<input type="button" value="Start Game" routerLink="/port" (click)="setPrices()" />
 		</div>
 	`,
 	providers: [ PlayerService ]
@@ -35,7 +35,7 @@ import { ShipService }				from './ship.service';
 export class NewGameComponent {
   	players: Player[];
   	ships: Ship[];
-  	currentPlayer: Player;
+  	player: Player;
 	constructor(
 		private playerService: PlayerService,
 		private shipService: ShipService
@@ -49,8 +49,14 @@ export class NewGameComponent {
 		this.players = this.playerService.getPlayers();
 		this.ships = this.shipService.getShips();
 		//this.players[0].currentPort = 1;
-		this.currentPlayer = this.players[0];
-		this.currentPlayer.currentPort = 1;
-		this.currentPlayer.ship = 1;
+		this.player = this.players[0];
+		this.player.currentPort = 1;
+		this.player.ship = 1;
+	}
+
+	setPrices(): void {
+		/* Call in a logical component
+		for (let port of )
+			*/
 	}
 }

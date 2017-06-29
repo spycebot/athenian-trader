@@ -14,10 +14,12 @@ import { COMMODITIES } 				from './commodities';
 	selector: 'trade',
 	styles: [`
 			ship-detail { float: left; }
+			img { width : 256px; }
 		`],
 	template: `
 		<div>
 			<h3>At Sea</h3>
+			<img src="assets/at-sea.jpg" alt="At sea painting" />
 			<p>It is smooth saling, {{player.name}}. We are arriving at {{ports[+player.destination].name}}.</p>
 			
 			<input type="button" value="Next" (click)="arriveAtPort()" routerLink="/port" />

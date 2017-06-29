@@ -4,6 +4,7 @@
   <h2>Diagnostics</h2>
 
   <div *ngIf="!atDebug">
+    <input type="button" value="Restart" routerLink="/" />
     <input type="button" value="Debug" (click)="toggleDebug()" />
   </div>
 
@@ -71,7 +72,7 @@
       <td colspan="2"><input type="button" value="Lose" routerLink="/lose" /></td>
     </tr>
     <tr>
-      <td colspan="2"><input type="button" value="Restart" routerLink="/new-game" /></td>
+      <td colspan="2"><input type="button" value="Restart" routerLink="/" /></td>
     </tr>
   </table>
 </div>
