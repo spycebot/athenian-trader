@@ -8,6 +8,8 @@ import { PlayerService }			from './player.service';
 import { ShipService }				from './ship.service';
 import { PortService }				from './port.service';
 
+//import { COMMODITIES }				from './commodities';
+
 @Component({
 	selector: 'port',
 	styles: [`
@@ -33,6 +35,7 @@ export class PortComponent {
   	ports: Port[];
   	player: Player;
   	port: Port;
+  	//commodities = COMMODITIES;
 
 	constructor(
 		private playerService: PlayerService,
@@ -47,5 +50,6 @@ export class PortComponent {
 		this.player = this.players[0];
 		this.port = this.ports[this.player.currentPort];
 		//console.log("PortComponent port.landscape: " + this.port.landscape);
+		//this.modifyStock();
 	}
 }

@@ -47,9 +47,19 @@ export class AtSeaComponent {
 		this.ships = this.shipService.getShips();
 		this.ports = this.portService.getPorts();
 		this.player = this.players[0];
+		this.modifyStock();
 	}
 
 	arriveAtPort(): void {
 		this.player.currentPort = this.player.destination;
+	}
+
+	modifyStock(): void {
+		for (let port of this.ports) {
+			for (let i in this.commodities) {
+				port.stock[i] = Math.ceil(+port.stock[i] + (+port.stock[i]* ((Math.random() * 0.1) - 0.05)));
+
+			}
+		}
 	}
 }

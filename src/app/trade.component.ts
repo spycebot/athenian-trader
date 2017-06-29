@@ -18,7 +18,7 @@ import { COMMODITIES } 				from './commodities';
 		`],
 	template: `
 		<div>
-			<h3>The Port of {{ports[+player.currentPort].name}}</h3>
+			<h3>The Market of {{ports[+player.currentPort].name}}</h3>
 			<p>In {{ports[+player.currentPort].name}}  you can buy and sell commodities for these prices.</p>
 			<table>
 				<tr><th>Commodity</th><th>Stock</th><th>Buy</th><th>Sell</th>
@@ -91,8 +91,6 @@ export class TradeComponent {
 			console.log(com + " sold! but for less money, at position " + i);
 		} else { console.log("Unable to sell " + i); }
 	}
-
-
 
 	setPrice(i: number): void {
 		if (this.port.stock[i] > 0) {

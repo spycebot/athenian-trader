@@ -17,8 +17,8 @@ import { COMMODITIES } 				from './commodities';
 		`],
 	template: `
 		<div>
-			<h3>The Port of {{ports[1].name}}</h3>
-			<p>To where shall we set sail, {{players[0].name}}?</p>
+			<h3>The Port of {{port.name}}</h3>
+			<p>To where shall we set sail, {{player.name}}?</p>
 			<ul>
 				<li *ngFor="let port of ports; let i = index">
 					<input type="button" (click)="sailTo(i)" value="{{ports[i].name}}" routerLink="/at-sea" />
@@ -37,6 +37,7 @@ export class SetSailComponent {
   	ports: Port[];
   	commodities = COMMODITIES;
   	player: Player;
+  	port: Port;
 	constructor(
 		private playerService: PlayerService,
 		private shipService: ShipService,
@@ -54,6 +55,7 @@ export class SetSailComponent {
 		this.ships = this.shipService.getShips();
 		this.ports = this.portService.getPorts();
 		this.player = this.players[0];
+		this.port = this.ports[this.player.currentPort];
 	}
 
 	goBack(): void {
