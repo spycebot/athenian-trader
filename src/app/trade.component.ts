@@ -21,12 +21,12 @@ import { COMMODITIES } 				from './commodities';
 			<h3>The Market of {{ports[+player.currentPort].name}}</h3>
 			<p>In {{ports[+player.currentPort].name}}  you can buy and sell commodities for these prices.</p>
 			<table>
-				<tr><th>Commodity</th><th>Stock</th><th>Buy</th><th>Sell</th>
+				<tr><th>Commodity</th><!-- th>Stock</th --><th>Buy</th><th>Sell</th>
 				<tr *ngFor="let commodity of commodities; let i = index">
 					<td>{{commodity}}</td>
-					<td>{{ports[+player.currentPort].stock[i]}}</td>
-					<td><input type="button" (click)="buy(commodity, i, ports[+player.currentPort].buyPrice[i])" value="{{ports[+player.currentPort].buyPrice[i]}}" /></td>
-					<td><input type="button" (click)="sell(commodity, i, ports[+player.currentPort].sellPrice[i])" value="{{ports[+player.currentPort].sellPrice[i]}}" /></td>
+					<!-- td>{{ports[+player.currentPort].stock[i]}}</td -->
+					<td><input type="button" (click)="buy(commodity, i, ports[+player.currentPort].buyPrice[i])" value="{{ports[+player.currentPort].buyPrice[i] | number:'1.0-0'}}" /></td>
+					<td><input type="button" (click)="sell(commodity, i, ports[+player.currentPort].sellPrice[i])" value="{{ports[+player.currentPort].sellPrice[i] | number:'1.0-0'}}" /></td>
 				</tr>
 			</table>
 			<ship-detail></ship-detail>
@@ -42,9 +42,10 @@ export class TradeComponent {
   	players: Player[];
   	ships: Ship[];
   	ports: Port[];
+  	player: Player;
+  	ship: Ship;
   	port: Port;
   	commodities = COMMODITIES;
-  	player: Player;
   	NUMERATOR: Number = 10000;
 	constructor(
 		private playerService: PlayerService,
@@ -63,6 +64,7 @@ export class TradeComponent {
 		this.ships = this.shipService.getShips();
 		this.ports = this.portService.getPorts();
 		this.player = this.players[0];
+		this.ship = this.ships[this.player.ship];
 		this.port = this.ports[this.player.currentPort];
 	}
 
@@ -71,30 +73,35 @@ export class TradeComponent {
 	}
 
 	buy(com: string, i: number, price: number): void {
-		if (this.player.duckets >= price && this.ships[+this.player.ship].available > 0 && this.ports[+this.player.currentPort].stock[i] > 0) { 
+		price = Math.floor(price);
+		if (this.player.duckets >= price && this.ship.available > 0 ) { // && this.ports[+this.player.currentPort].stock[i] > 0
 			this.player.duckets = +this.player.duckets - price; 
-			this.ships[+this.player.ship].cargo[i] = +this.ships[+this.player.ship].cargo[i] + 1;
-			this.ships[+this.player.ship].available = +this.ships[+this.player.ship].available - 1;
-			this.ports[+this.player.currentPort].stock[i] = +this.ports[+this.player.currentPort].stock[i] - 1;
-			this.setPrice(i);
+			this.ship.cargo[i] = +this.ship.cargo[i] + 1;
+			this.ship.available = +this.ship.available - 1;
+			//this.ports[+this.player.currentPort].stock[i] = +this.ports[+this.player.currentPort].stock[i] - 1;
+			//this.setPrice(i);
 			console.log(com + " sold! at position " + i + " for a price of " + price);
 		} else { console.log("Unable to buy " + i); }
 	}
 
 	sell(com: string, i: number, price: number): void {
-		if (this.ships[+this.player.ship].cargo[i] > 0) { 
+		price = Math.floor(price);
+		if (this.ship.cargo[i] > 0) { 
 			this.player.duckets = +this.player.duckets + price; 
-			this.ships[+this.player.ship].cargo[i] = +this.ships[+this.player.ship].cargo[i] - 1;
-			this.ships[+this.player.ship].available = +this.ships[+this.player.ship].available + 1;
-			this.ports[+this.player.currentPort].stock[i] = +this.ports[+this.player.currentPort].stock[i] + 1;
-			this.setPrice(i);
+			this.ship.cargo[i] = +this.ship.cargo[i] - 1;
+			this.ship.available = +this.ship.available + 1;
+			//this.ports[+this.player.currentPort].stock[i] = +this.ports[+this.player.currentPort].stock[i] + 1;
+			//this.setPrice(i);
 			console.log(com + " sold! but for less money, at position " + i);
 		} else { console.log("Unable to sell " + i); }
 	}
 
 	setPrice(i: number): void {
 		if (this.port.stock[i] > 0) {
-			this.port.buyPrice[i] = Math.floor(+this.NUMERATOR / 0.833 / (+this.port.stock[i]));
-			this.port.sellPrice[i] = Math.floor(+this.NUMERATOR / 1.25 / (+this.port.stock[i]));}
+			// Price is based on stock, but a bit random
+			let baseDifferential: number = 0.05;
+			let randomDifferential: number = Math.random() / 10;
+			this.port.buyPrice[i] = Math.floor(+this.NUMERATOR / ( 1 - (baseDifferential + randomDifferential)) / (+this.port.stock[i])); //0.833
+			this.port.sellPrice[i] = Math.floor(+this.NUMERATOR / ( 1 + (baseDifferential + randomDifferential)) / (+this.port.stock[i]));} // 1.25
 	}
 }

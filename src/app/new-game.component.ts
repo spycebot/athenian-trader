@@ -50,7 +50,7 @@ export class NewGameComponent {
 		this.ships = this.shipService.getShips();
 		//this.players[0].currentPort = 1;
 		this.player = this.players[0];
-		this.player.currentPort = 1;
+		this.player.currentPort = 0;
 		this.player.ship = 1;
 	}
 

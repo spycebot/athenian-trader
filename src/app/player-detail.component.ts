@@ -18,12 +18,16 @@ import { COMMODITIES }				from './commodities';
 		  <h4>Player Summary</h4>
 			<table>
 	    		<tr>
+	    			<td>Name: </td>
+	    			<td>{{player.name}}</td>
+				</tr>
+	    		<tr>
 	    			<td>Duckets: </td>
 	    			<td>{{players[0].duckets}}</td>
 				</tr>
 	    		<tr>
 	    			<td>Ship Hold: </td>
-	    			<td>{{ships[1].size}}({{ships[1].available}})</td>
+	    			<td>{{ships[player.ship].size}}({{ships[player.ship].available}})</td>
 				</tr>
 			</table>
 		</div>
@@ -39,6 +43,7 @@ export class PlayerDetailComponent {
   	players: Player[];
   	ships: Ship[];
   	ports: Port[];
+  	player: Player;
   	commodities = COMMODITIES;
 	constructor(
 		private playerService: PlayerService,
@@ -54,5 +59,6 @@ export class PlayerDetailComponent {
 		this.players = this.playerService.getPlayers();
 		this.ships = this.shipService.getShips();
 		this.ports = this.portService.getPorts();
+		this.player = this.players[0];
 	}
 }

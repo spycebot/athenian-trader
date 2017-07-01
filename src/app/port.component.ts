@@ -19,7 +19,7 @@ import { PortService }				from './port.service';
 		<div>
 			<h3>The Port of {{port.name}}</h3>
 			<img src="assets/1024px-akropolis_by_leo_von_klenze1.jpg"  alt="Leo von Klenze" />
-			<p>Welcome {{port.name}}. Visit the teaming market to trade!</p>
+			<p>Welcome to {{port.name}}, {{player.name}}. Visit the teaming market to trade!</p>
 			<input type="button" value="Set Sail" routerLink="/port/set-sail" />
 			<input type="button" value="Trade" routerLink="/port/trade" />
 			<input type="button" value="Visit Warehouse" disabled />
