@@ -5,6 +5,7 @@ export class Player {
   	destination: number;
   	currentPort: number;
   	ship: number;
+    victory: number;
 
   	constructor() {
 	  	this.id = 0;
@@ -13,5 +14,6 @@ export class Player {
 	  	this.destination = 0;
 	  	this.currentPort = 0;
 	  	this.ship = 0;
+      this.victory = 0;
   	}
   }

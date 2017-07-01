@@ -18,12 +18,20 @@ import { PortService }				from './port.service';
 	template: `
 		<div>
 			<h3>The Port of {{port.name}}</h3>
-			<img src="assets/1024px-akropolis_by_leo_von_klenze1.jpg"  alt="Leo von Klenze" />
-			<p>Welcome to {{port.name}}, {{player.name}}. Visit the teaming market to trade!</p>
-			<input type="button" value="Set Sail" routerLink="/port/set-sail" />
-			<input type="button" value="Trade" routerLink="/port/trade" />
-			<input type="button" value="Visit Warehouse" disabled />
-			<input type="button" value="Borrow Money" disabled />
+			<div  *ngIf="!win">
+				<img src="assets/1024px-akropolis_by_leo_von_klenze1.jpg"  alt="Leo von Klenze" />
+				<p>Welcome to {{port.name}}, {{player.name}}. Visit the teaming market to trade!</p>
+				<input type="button" value="Set Sail" routerLink="/port/set-sail" />
+				<input type="button" value="Trade" routerLink="/port/trade" />
+				<input type="button" value="Visit Warehouse" disabled />
+				<input type="button" value="Borrow Money" disabled />
+			</div>
+			<div *ngIf="win">
+				<img src="assets/atFallback.jpg">
+				<p>Hot diggity! Reckoning says you have enough to retire, {{player.name}}.</p>
+				<p>win: {{win}}</p>
+				<input type="button" value="Win" routerLink="/win" />
+			</div>
 		</div>
 	`,
 	providers: [ PlayerService ]
@@ -35,6 +43,8 @@ export class PortComponent {
   	ports: Port[];
   	player: Player;
   	port: Port;
+  	win: boolean = false;
+  	//victory: numbe
   	//commodities = COMMODITIES;
 
 	constructor(
@@ -51,5 +61,14 @@ export class PortComponent {
 		this.port = this.ports[this.player.currentPort];
 		//console.log("PortComponent port.landscape: " + this.port.landscape);
 		//this.modifyStock();
+		if (this.port.name == "Athens") this.evaluatePlayer();
+	}
+
+	evaluatePlayer(): void {
+		let victory: number = 10000; // very low
+		if (this.player.duckets > victory) { 
+			this.win = true; 
+		}
+		console.log("PortComponent:evaluatePlayer:");
 	}
 }
