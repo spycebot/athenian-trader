@@ -21,6 +21,7 @@ import { PortService }				from './port.service';
 			<div  *ngIf="!win">
 				<img src="assets/1024px-akropolis_by_leo_von_klenze1.jpg"  alt="Leo von Klenze" />
 				<p>Welcome to {{port.name}}, {{player.name}}. Visit the teaming market to trade!</p>
+				<p>win: {{win}}</p>
 				<input type="button" value="Set Sail" routerLink="/port/set-sail" />
 				<input type="button" value="Trade" routerLink="/port/trade" />
 				<input type="button" value="Visit Warehouse" disabled />
@@ -65,7 +66,8 @@ export class PortComponent {
 	}
 
 	evaluatePlayer(): void {
-		let victory: number = 10000; // very low
+		let victory: number; // very low  = 10000
+		victory = this.player.victory;
 		if (this.player.duckets > victory) { 
 			this.win = true; 
 		}

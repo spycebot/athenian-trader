@@ -25,8 +25,8 @@ import { COMMODITIES } 				from './commodities';
 				<tr *ngFor="let commodity of commodities; let i = index">
 					<td>{{commodity}}</td>
 					<!-- td>{{ports[+player.currentPort].stock[i]}}</td -->
-					<td><input type="button" (click)="buy(commodity, i, ports[+player.currentPort].buyPrice[i])" value="{{ports[+player.currentPort].buyPrice[i] | number:'1.0-0'}}" /></td>
-					<td><input type="button" (click)="sell(commodity, i, ports[+player.currentPort].sellPrice[i])" value="{{ports[+player.currentPort].sellPrice[i] | number:'1.0-0'}}" /></td>
+					<td><input type="button" (mousedown)="buy(commodity, i, ports[+player.currentPort].buyPrice[i])" value="{{ports[+player.currentPort].buyPrice[i] | number:'1.0-0'}}" /></td>
+					<td><input type="button" (mousedown)="sell(commodity, i, ports[+player.currentPort].sellPrice[i])" value="{{ports[+player.currentPort].sellPrice[i] | number:'1.0-0'}}" /></td>
 				</tr>
 			</table>
 			<ship-detail></ship-detail>
@@ -72,7 +72,7 @@ export class TradeComponent {
 	  this.location.back();
 	}
 
-	buy(com: string, i: number, price: number): void {
+	buy(com: string, i: number, price: number, event): void {
 		price = Math.floor(price);
 		if (this.player.duckets >= price && this.ship.available > 0 ) { // && this.ports[+this.player.currentPort].stock[i] > 0
 			this.player.duckets = +this.player.duckets - price; 
