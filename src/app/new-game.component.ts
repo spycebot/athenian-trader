@@ -28,7 +28,7 @@ import { COMMODITIES }				from './commodities';
 				</tr>
 				<tr>
 					<td>Cash: </td>
-					<td><input [(ngModel)]="player.duckets" placeholder="Cashola" disabled /></td>
+					<td><input [(ngModel)]="player.duckets" placeholder="Cashola" /></td>
 				</tr>
 				<tr>
 					<td colspan="2">
@@ -77,6 +77,8 @@ export class NewGameComponent {
 		this.player.ship = 1; // workaround for proper initialization
 		this.player.duckets = 1000; // traditional game as the option of debt
 		this.ship = this.ships[this.player.ship];
+		this.ship.cargo = [0, 0, 0, 0];
+		this.ship.available = this.ship.size;
 		this.randomiseMarkets();
 	}
 

@@ -21,12 +21,14 @@ import { COMMODITIES } 				from './commodities';
 			<h3>The Market of {{ports[+player.currentPort].name}}</h3>
 			<p>In {{ports[+player.currentPort].name}}  you can buy and sell commodities for these prices.</p>
 			<table>
-				<tr><th>Commodity</th><!-- th>Stock</th --><th>Buy</th><th>Sell</th>
+				<tr><th>Commodity</th><!-- th>Stock</th --><th>Buy</th><th>Max</th><th>Sell</th><th>Max</th>
 				<tr *ngFor="let commodity of commodities; let i = index">
 					<td>{{commodity}}</td>
 					<!-- td>{{ports[+player.currentPort].stock[i]}}</td -->
-					<td><input type="button" (mousedown)="buy(commodity, i, ports[+player.currentPort].buyPrice[i])" value="{{ports[+player.currentPort].buyPrice[i] | number:'1.0-0'}}" /></td>
-					<td><input type="button" (mousedown)="sell(commodity, i, ports[+player.currentPort].sellPrice[i])" value="{{ports[+player.currentPort].sellPrice[i] | number:'1.0-0'}}" /></td>
+					<td><input type="button" (click)="buy(commodity, i, port.buyPrice[i], 1)" value="{{port.buyPrice[i] | number:'1.0-0'}}" /></td>
+					<td><input type="button" (click)="buy(commodity, i, port.buyPrice[i], calcMaxBuy(i, port.buyPrice[i]))" value="{{calcMaxBuy(i, port.buyPrice[i])}}" /></td>
+					<td><input type="button" (click)="sell(commodity, i, port.sellPrice[i], 1)" value="{{port.sellPrice[i] | number:'1.0-0'}}" /></td>
+					<td><input type="button" (click)="sell(commodity, i, port.sellPrice[i], calcMaxSell(i, port.sellPrice[i]))" value="{{calcMaxSell(i, port.sellPrice[i])}}" /></td>
 				</tr>
 			</table>
 			<ship-detail></ship-detail>
@@ -72,24 +74,24 @@ export class TradeComponent {
 	  this.location.back();
 	}
 
-	buy(com: string, i: number, price: number, event): void {
+	buy(com: string, i: number, price: number, c: number): void {
 		price = Math.floor(price);
-		if (this.player.duckets >= price && this.ship.available > 0 ) { // && this.ports[+this.player.currentPort].stock[i] > 0
-			this.player.duckets = +this.player.duckets - price; 
-			this.ship.cargo[i] = +this.ship.cargo[i] + 1;
-			this.ship.available = +this.ship.available - 1;
+		if (this.player.duckets >= (price * c) && this.ship.available >= c ) { // && this.ports[+this.player.currentPort].stock[i] > 0
+			this.player.duckets = +this.player.duckets - (price * c); 
+			this.ship.cargo[i] = +this.ship.cargo[i] + c;
+			this.ship.available = +this.ship.available - c;
 			//this.ports[+this.player.currentPort].stock[i] = +this.ports[+this.player.currentPort].stock[i] - 1;
 			//this.setPrice(i);
 			console.log(com + " sold! at position " + i + " for a price of " + price);
 		} else { console.log("Unable to buy " + i); }
 	}
 
-	sell(com: string, i: number, price: number): void {
+	sell(com: string, i: number, price: number, c: number): void {
 		price = Math.floor(price);
 		if (this.ship.cargo[i] > 0) { 
-			this.player.duckets = +this.player.duckets + price; 
-			this.ship.cargo[i] = +this.ship.cargo[i] - 1;
-			this.ship.available = +this.ship.available + 1;
+			this.player.duckets = +this.player.duckets + (price * c); 
+			this.ship.cargo[i] = +this.ship.cargo[i] - c;
+			this.ship.available = +this.ship.available + c;
 			//this.ports[+this.player.currentPort].stock[i] = +this.ports[+this.player.currentPort].stock[i] + 1;
 			//this.setPrice(i);
 			console.log(com + " sold! but for less money, at position " + i);
@@ -103,5 +105,19 @@ export class TradeComponent {
 			let randomDifferential: number = Math.random() / 10;
 			this.port.buyPrice[i] = Math.floor(+this.NUMERATOR / ( 1 - (baseDifferential + randomDifferential)) / (+this.port.stock[i])); //0.833
 			this.port.sellPrice[i] = Math.floor(+this.NUMERATOR / ( 1 + (baseDifferential + randomDifferential)) / (+this.port.stock[i]));} // 1.25
+	}
+
+	calcMaxBuy(i: number, p: number): number {
+		let cm: number;
+		cm = Math.trunc(this.player.duckets / this.port.buyPrice[i]); // Math.floor();
+		//return cm > this.ship.available ? this.ship.available : cm
+		if (cm >= this.ship.available) { return this.ship.available; }
+		else { return cm; }
+	}
+
+	calcMaxSell(i: number, p: number): number {
+		let cm: number;
+		cm = this.ship.cargo[i];
+		return cm;
 	}
 }

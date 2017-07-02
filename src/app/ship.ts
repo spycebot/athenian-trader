@@ -1,8 +1,8 @@
 export class Ship {
-  id: Number;
+  id: number;
   name: string;
-  size: Number;
-  hp: Number;
-  cargo: Number[];
-  available: Number;
+  size: number;
+  hp: number;
+  cargo: number[];
+  available: number;
 }
