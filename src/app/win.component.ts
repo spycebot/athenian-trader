@@ -10,7 +10,8 @@ import { PlayerService }			from './player.service';
 	
 		<div>
 		  <h2>You have won!</h2>
-		  <p>Congratulations my friend. You have enough money to retire in style. You will enjoy life with your fortune of {{players[0].duckets}} duckets, recouning your glory days.</p>
+		  <img src="assets/Cole_Thomas_The_Course_of_Empire_The_Arcadian_or_Pastoral_State_1836.jpg" alt="Thomas Cole" />
+		  <p>Congratulations my friend. You have enough money to retire in style. You will enjoy life with your fortune of {{player.duckets | number:'1.0-0'}} duckets, recouning your glory days.</p>
 		  <input type="button" value="Play Again" routerLink="/new-game" />
 		</div>
 	`,
@@ -19,6 +20,7 @@ import { PlayerService }			from './player.service';
 
 export class WinComponent {
   	players: Player[];
+  	player: Player;
 	constructor(
 		private playerService: PlayerService
 	) { }
@@ -29,5 +31,6 @@ export class WinComponent {
 
 	ngOnInit(): void {
 		this.players = this.playerService.getPlayers();
+		this.player = this.players[0];
 	}
 }

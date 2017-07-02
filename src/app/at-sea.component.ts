@@ -77,6 +77,7 @@ export class AtSeaComponent {
 	}
 
 	modifyPrices(): void {
+		// this function exists on three components :0(
 		for (let port of this.ports) {
 			for (let i in this.commodities) {
 				let baseDifferential: number = 0.05;

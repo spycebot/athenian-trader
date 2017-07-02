@@ -28,7 +28,7 @@ import { PortService }				from './port.service';
 				<input type="button" value="Borrow Money" disabled />
 			</div>
 			<div *ngIf="win">
-				<img src="assets/atFallback.jpg">
+				<img src="assets/louvre-allegorie-fortune-fortuna-marina.jpg">
 				<p>Hot diggity! Reckoning says you have enough to retire, {{player.name}}.</p>
 				<p>win: {{win}}</p>
 				<input type="button" value="Win" routerLink="/win" />

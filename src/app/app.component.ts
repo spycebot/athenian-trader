@@ -84,8 +84,10 @@ export class AppComponent {
 			for (let i in this.commodities) {
 				let baseDifferential: number = 0.05;
 				let randomDifferential: number = Math.random() / 10;
-				port.buyPrice[i] = port.buyPrice[i] + (port.buyPrice[i] * (baseDifferential + randomDifferential)); // Math.floor()
-				port.sellPrice[i] = port.buyPrice[i] - (port.buyPrice[i] * (baseDifferential + randomDifferential)); 
+				if (port.buyPrice[i] - (port.buyPrice[i] * (baseDifferential - randomDifferential)) > 0) {
+					port.buyPrice[i] = port.buyPrice[i] + (port.buyPrice[i] * (baseDifferential - randomDifferential)); // Math.floor()
+					port.sellPrice[i] = port.buyPrice[i] - (port.buyPrice[i] * randomDifferential); 
+				}
 			}
 
 		}

@@ -1,0 +1,1 @@
+export const RANKINGS = ['Aristotle', 'Socrates', 'Pythagorus', 'Plato', 'Euclid'];

@@ -18,10 +18,11 @@ import { COMMODITIES } 				from './commodities';
 	template: `
 		<div>
 			<h3>The Port of {{port.name}}</h3>
+			<!-- img src="assets/atMapBackground.png" alt="South West Aegean" / -->
 			<p>To where shall we set sail, {{player.name}}?</p>
 			<ul>
 				<li *ngFor="let port of ports; let i = index">
-					<input type="button" (click)="sailTo(i)" value="{{ports[i].name}}" routerLink="/at-sea" />
+					<input type="button" (click)="sailTo(i)" value="{{port.name}}" routerLink="/at-sea" />
 				</li>
 			</ul>
 
