@@ -17,20 +17,20 @@ import { PortService }				from './port.service';
 	`],
 	template: `
 		<div>
-			<h3>The Port of {{port.name}}</h3>
+			<h2>The Port of {{port.name}}</h2>
 			<div  *ngIf="!win">
 				<img src="assets/1024px-akropolis_by_leo_von_klenze1.jpg"  alt="Leo von Klenze" />
 				<p>Welcome to {{port.name}}, {{player.name}}. Visit the teaming market to trade!</p>
-				<p>win: {{win}}</p>
+				<!-- p>win: {{win}}</p -->
 				<input type="button" value="Set Sail" routerLink="/port/set-sail" />
 				<input type="button" value="Trade" routerLink="/port/trade" />
-				<input type="button" value="Visit Warehouse" disabled />
+				<input type="button" value="Visit Warehouse" routerLink="/port/warehouse" [disabled]="port.name != 'Athens'" />
 				<input type="button" value="Borrow Money" disabled />
 			</div>
 			<div *ngIf="win">
 				<img src="assets/louvre-allegorie-fortune-fortuna-marina.jpg">
 				<p>Hot diggity! Reckoning says you have enough to retire, {{player.name}}.</p>
-				<p>win: {{win}}</p>
+				<!-- p>win: {{win}}</p -->
 				<input type="button" value="Win" routerLink="/win" />
 			</div>
 		</div>
@@ -51,7 +51,8 @@ export class PortComponent {
 	constructor(
 		private playerService: PlayerService,
 		private shipService: ShipService,
-		private portService: PortService
+		private portService: PortService,
+		private location: Location
 	) { }
 
 	ngOnInit(): void {

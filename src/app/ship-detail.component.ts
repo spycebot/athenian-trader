@@ -15,7 +15,7 @@ import { COMMODITIES }				from './commodities';
 	template: `
 	
 		<div>
-		  <h4>Cargo on your ship {{ships[1].name}}</h4>
+		  <h4>Ship {{ships[1].name}} Cargo |</h4>
 			<table>
 	    		<tr *ngFor="let cargo of ships[1].cargo; let i  = index">
 	    			<td>{{commodities[i]}}</td>

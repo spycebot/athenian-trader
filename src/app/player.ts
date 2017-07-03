@@ -6,6 +6,8 @@ export class Player {
   	currentPort: number;
   	ship: number;
     victory: number;
+    warehouse?: number[];
+    size?: number;
 
   	constructor() {
 	  	this.id = 0;

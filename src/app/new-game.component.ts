@@ -80,6 +80,8 @@ export class NewGameComponent {
 		this.ship.cargo = [0, 0, 0, 0];
 		this.ship.available = this.ship.size;
 		this.randomiseMarkets();
+		this.player.warehouse = [0, 0, 0, 0];
+		this.player.size = 1000;
 	}
 
 	setPrices(): void {

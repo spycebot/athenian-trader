@@ -12,6 +12,7 @@ import { TradeComponent }	from './trade.component';
 import { SetSailComponent }	from './set-sail.component';
 import { AtSeaComponent }   from './at-sea.component';
 import { MarketsComponent }   from './markets.component';
+import { WarehouseComponent }   from './warehouse.component';
 
 const routes: Routes = [
 	{ path: '', redirectTo: '/splash', pathMatch: 'full' },
@@ -23,6 +24,7 @@ const routes: Routes = [
 	{ path: 'port', component: PortComponent },
 	{ path: 'port/trade', component: TradeComponent },
 	{ path: 'port/set-sail', component: SetSailComponent },
+	{ path: 'port/warehouse', component: WarehouseComponent },
 	{ path: 'at-sea', component: AtSeaComponent },
 	{ path: 'markets', component: MarketsComponent }
 ];

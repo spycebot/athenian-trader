@@ -14,14 +14,14 @@ import { COMMODITIES } 				from './commodities';
 	selector: 'trade',
 	styles: [`
 			ship-detail { float: left; }
-			input { width: 100%; }
+			table input { width: 100%; }
 		`],
 	template: `
 		<div>
-			<h3>The Market of {{ports[+player.currentPort].name}}</h3>
+			<h2>The Market of {{ports[+player.currentPort].name}}</h2>
 			<p>In {{ports[+player.currentPort].name}}  you can buy and sell commodities for these prices.</p>
 			<table>
-				<tr><th>Commodity</th><!-- th>Stock</th --><th>Buy</th><th>Max</th><th>Sell</th><th>Max</th>
+				<tr><th> </th><!-- th>Stock</th --><th>Buy</th><th>Max</th><th>Sell</th><th>Max</th></tr>
 				<tr *ngFor="let commodity of commodities; let i = index">
 					<td>{{commodity}}</td>
 					<!-- td>{{ports[+player.currentPort].stock[i]}}</td -->
