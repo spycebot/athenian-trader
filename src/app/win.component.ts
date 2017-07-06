@@ -28,7 +28,7 @@ import { RANKINGS }			from './rankings';
 		  			<th>Target</th><th>Stature</th>
 		  		</tr>
 		  		<tr *ngFor="let figure of rankings; let i = index"  [class.achieved]="i == achieveLevel">
-		  			<td>{{calcVictoryRank(i)}}</td>
+		  			<td>{{calcVictoryRank(i) | number:'3.0-0'}}</td>
 		  			<td>{{figure}}</td>
 		  		</tr>
 		  	</table>

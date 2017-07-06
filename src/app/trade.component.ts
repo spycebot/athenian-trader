@@ -35,6 +35,7 @@ import { COMMODITIES } 				from './commodities';
 			<player-detail></player-detail>
 			
 			<input type="button" value="Back" (click)="goBack()" />
+			<input type="button" value="Visit Warehouse" routerLink="/port/warehouse" [disabled]="port.name != 'Athens'" />
 		</div>
 	`,
 	providers: [ PlayerService ]

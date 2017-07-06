@@ -18,20 +18,25 @@ import { PortService }				from './port.service';
 	template: `
 		<div>
 			<h2>The Port of {{port.name}}</h2>
-			<div  *ngIf="!win">
-				<img src="assets/1024px-akropolis_by_leo_von_klenze1.jpg"  alt="Leo von Klenze" />
-				<p>Welcome to {{port.name}}, {{player.name}}. Visit the teaming market to trade!</p>
-				<!-- p>win: {{win}}</p -->
-				<input type="button" value="Set Sail" routerLink="/port/set-sail" />
-				<input type="button" value="Trade" routerLink="/port/trade" />
-				<input type="button" value="Visit Warehouse" routerLink="/port/warehouse" [disabled]="port.name != 'Athens'" />
-				<input type="button" value="Borrow Money" disabled />
+			<div *ngIf="payDues">
+				<p>The Athenian temple priest Donal approaches and askes if you will make a contribution of 100 duckets.</p>
 			</div>
-			<div *ngIf="win">
-				<img src="assets/louvre-allegorie-fortune-fortuna-marina.jpg">
-				<p>Hot diggity! Reckoning says you have enough to retire, {{player.name}}.</p>
-				<!-- p>win: {{win}}</p -->
-				<input type="button" value="Win" routerLink="/win" />
+			<div *ngIf="!payDues">
+				<div  *ngIf="!win">
+					<img src="assets/1024px-akropolis_by_leo_von_klenze1.jpg"  alt="Leo von Klenze" />
+					<p>Welcome to {{port.name}}, {{player.name}}. Visit the teeming market to trade! You can store excess cargo in your warehouse. The money lender can help in a pinch.</p>
+					<!-- p>win: {{win}}</p -->
+					<input type="button" value="Set Sail" routerLink="/port/set-sail" />
+					<input type="button" value="Trade" routerLink="/port/trade" />
+					<input type="button" value="Warehouse" routerLink="/port/warehouse" [disabled]="port.name != 'Athens'" />
+					<input type="button" value="Money Lender" routerLink="/port/money-lender" [disabled]="port.name != 'Athens'" />
+				</div>
+				<div *ngIf="win">
+					<img src="assets/louvre-allegorie-fortune-fortuna-marina.jpg">
+					<p>Hot diggity! Reckoning says you have enough money to retire, {{player.name}}.</p>
+					<!-- p>win: {{win}}</p -->
+					<input type="button" value="Win" routerLink="/win" />
+				</div>
 			</div>
 		</div>
 	`,
@@ -45,6 +50,7 @@ export class PortComponent {
   	player: Player;
   	port: Port;
   	win: boolean = false;
+  	payDues: boolean = false;
   	//victory: numbe
   	//commodities = COMMODITIES;
 

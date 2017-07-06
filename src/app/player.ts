@@ -8,6 +8,7 @@ export class Player {
     victory: number;
     warehouse?: number[];
     size?: number;
+    debt?: number;
 
   	constructor() {
 	  	this.id = 0;

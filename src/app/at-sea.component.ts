@@ -89,6 +89,10 @@ export class AtSeaComponent {
 				}
 			}
 		}
-
+		if (this.player.debt > 0) {
+			this.player.debt = this.player.debt + (this.player.debt * 0.02);
+		} else if (this.player.debt < 0) {
+			this.player.debt = this.player.debt + (this.player.debt * 0.006);
+		}
 	}
 }

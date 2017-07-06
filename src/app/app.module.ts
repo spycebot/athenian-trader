@@ -17,6 +17,7 @@ import { SetSailComponent }     	from './set-sail.component';
 import { AtSeaComponent }         from './at-sea.component';
 import { MarketsComponent }         from './markets.component';
 import { WarehouseComponent }         from './warehouse.component';
+import { MoneyLenderComponent }         from './money-lender.component';
 
 import { PlayerService }          	from './player.service';
 import { PortService }          	from './port.service';
@@ -39,7 +40,8 @@ import { AppRoutingModule }		from './app-routing.module';
     SetSailComponent,
     AtSeaComponent,
     MarketsComponent,
-    WarehouseComponent
+    WarehouseComponent,
+    MoneyLenderComponent
   ],
   imports: [
     BrowserModule,

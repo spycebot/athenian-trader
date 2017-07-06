@@ -17,6 +17,7 @@ import { COMMODITIES }				from './commodities';
 	
 		<div>
 		  <h2>New Game</h2>
+		  <p></p>
 			<table>
 				<tr>
 					<td>Name: </td>
@@ -28,14 +29,19 @@ import { COMMODITIES }				from './commodities';
 				</tr>
 				<tr>
 					<td>Cash: </td>
-					<td><input [(ngModel)]="player.duckets" placeholder="Cashola" /></td>
+					<td><input [(ngModel)]="player.duckets" placeholder="Cashola" disabled /></td>
+				</tr>
+				<tr>
+					<td>Debt: </td>
+					<td><input [(ngModel)]="player.debt" placeholder="Liability" disabled /></td>
 				</tr>
 				<tr>
 					<td colspan="2">
 						<form action="">
-						  <input type="radio" name="gender" value="easy" (click)="setVictory(10000)" checked> Easy
-						  <input type="radio" name="gender" value="medium" (click)="setVictory(100000)"> Medium
-						  <input type="radio" name="gender" value="hard" (click)="setVictory(1000000)"> Hard
+						  <input type="radio" name="difficulty" value="easy" (click)="setVictory(10000)" checked> Easy
+						  <input type="radio" name="difficulty" value="medium" (click)="setVictory(100000)"> Medium
+						  <input type="radio" name="difficulty" value="hard" (click)="setVictory(1000000)"> Hard
+						  <input type="checkbox" name="chooseDebt" value="Debt" (click)="toggleDebt()" />Debt
 						</form>
 					</td>
 				</tr>
@@ -44,7 +50,7 @@ import { COMMODITIES }				from './commodities';
 					<td><input [(ngModel)]="player.victory" placeholder="Victory" disabled /></td>
 				</tr>
 			</table>
-		  	<input type="button" value="Start Game" routerLink="/port" (click)="setPrices()" />
+		  	<input type="button" value="Start Game" routerLink="/port" />
 		</div>
 	`,
 	providers: [ PlayerService ]
@@ -57,6 +63,7 @@ export class NewGameComponent {
   	commodities = COMMODITIES;
   	player: Player;
   	ship: Ship;
+  	startWithDebt: boolean;
 	constructor(
 		private playerService: PlayerService,
 		private shipService: ShipService,
@@ -72,7 +79,7 @@ export class NewGameComponent {
 		this.ships = this.shipService.getShips();
 		this.ports = this.portService.getPorts();
 		//this.players[0].currentPort = 1;
-		this.player = this.players[0];
+		this.player = this.players[0]; 
 		//this.player.currentPort = 0;
 		this.player.ship = 1; // workaround for proper initialization
 		this.player.duckets = 1000; // traditional game as the option of debt
@@ -82,12 +89,8 @@ export class NewGameComponent {
 		this.randomiseMarkets();
 		this.player.warehouse = [0, 0, 0, 0];
 		this.player.size = 1000;
-	}
-
-	setPrices(): void {
-		/* Call in a logical component
-		for (let port of )
-			*/
+		this.player.debt = 0;
+		this.startWithDebt = false;
 	}
 
 	setVictory(t: number):void {
@@ -113,6 +116,18 @@ export class NewGameComponent {
 		for (var i = 0; i < 4; i++) {
 			this.modifyPrices();
 			console.log("Another round of modification!");
+		}
+	}
+
+	toggleDebt(): void {
+		this.startWithDebt = !this.startWithDebt;
+		if (this.startWithDebt) { 
+			this.player.duckets = this.player.duckets + 3000;
+			this.player.debt = this.player.debt + 3000;
+		} else {
+			this.player.duckets = this.player.duckets - 3000;
+			this.player.debt = this.player.debt - 3000;
+
 		}
 	}
 }

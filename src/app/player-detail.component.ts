@@ -23,7 +23,11 @@ import { COMMODITIES }				from './commodities';
 				</tr>
 	    		<tr>
 	    			<td>Duckets: </td>
-	    			<td>{{players[0].duckets}}</td>
+	    			<td>{{player.duckets}}</td>
+				</tr>
+	    		<tr>
+	    			<td>Debt: </td>
+	    			<td>{{player.debt | number:'1.0-0' }}</td>
 				</tr>
 	    		<tr>
 	    			<td>Ship Hold: </td>
@@ -48,6 +52,7 @@ export class PlayerDetailComponent {
   	ships: Ship[];
   	ports: Port[];
   	player: Player;
+  	ship: Ship;
   	commodities = COMMODITIES;
 	constructor(
 		private playerService: PlayerService,
@@ -64,6 +69,7 @@ export class PlayerDetailComponent {
 		this.ships = this.shipService.getShips();
 		this.ports = this.portService.getPorts();
 		this.player = this.players[0];
+		this.ship = this.ships[this.player.ship];
 		if (!this.player.size) {
 			this.player.warehouse = [1, 1, 1, 1];
 			this.player.size = 900;
