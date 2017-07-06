@@ -47,6 +47,7 @@ export class AtSeaComponent {
 		this.ships = this.shipService.getShips();
 		this.ports = this.portService.getPorts();
 		this.player = this.players[0];
+		this.player.turn = this.player.turn + 1;
 		//this.modifyStock();
 		//this.setTargets(); //if ( true ) 
 		this.modifyPrices();

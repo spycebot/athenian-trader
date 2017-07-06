@@ -25,6 +25,7 @@ export class AppComponent {
 	players: Player[];
 	ports: Port[];
 	ships: Ship[];
+//	player: Player;
 	destination: number = 0;
 	shipIndex: number = 1;
 	portIndex: number = 1;
@@ -35,7 +36,7 @@ export class AppComponent {
 		private playerService: PlayerService,
 		private shipService: ShipService,
 		private portService: PortService,
-		private player: Player
+	//	private player: Player
 	) { }
 
 
@@ -43,6 +44,7 @@ export class AppComponent {
 		this.getPlayers();
 		this.getShips();
 		this.getPorts();
+//		this.player = this.players[0];
 		//this.modifyStock();
 		this.modifyPrices();
 	}

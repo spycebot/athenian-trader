@@ -19,7 +19,11 @@ import { PortService }				from './port.service';
 		<div>
 			<h2>The Port of {{port.name}}</h2>
 			<div *ngIf="payDues">
-				<p>The Athenian temple priest Donal approaches and askes if you will make a contribution of 100 duckets.</p>
+				<p>The Athenian temple priest Rhonbos approaches and askes if you will make a temple donation of {{donation}} duckets.</p>
+				<input type="button" value="No Thanks" (click)="declineDonation()"/>
+				<input type="button" value="Make Donation" [disabled]="player.duckets < donation" (click)="makeDonation()" />
+				<input type="button" value="Borrow {{donation}} for Donation" (click)="duressBorrow(donation)"/>
+				<!-- the word among sailors is that you are wanted back in Athens -->
 			</div>
 			<div *ngIf="!payDues">
 				<div  *ngIf="!win">
@@ -38,6 +42,7 @@ import { PortService }				from './port.service';
 					<input type="button" value="Win" routerLink="/win" />
 				</div>
 			</div>
+			<p>payDues: {{payDues}}</p>
 		</div>
 	`,
 	providers: [ PlayerService ]
@@ -51,6 +56,7 @@ export class PortComponent {
   	port: Port;
   	win: boolean = false;
   	payDues: boolean = false;
+  	donation: number;
   	//victory: numbe
   	//commodities = COMMODITIES;
 
@@ -69,15 +75,46 @@ export class PortComponent {
 		this.port = this.ports[this.player.currentPort];
 		//console.log("PortComponent port.landscape: " + this.port.landscape);
 		//this.modifyStock();
-		if (this.port.name == "Athens") this.evaluatePlayer();
+		if (this.port.name == "Athens") {
+			if (this.evaluateVictory()) {
+				this.win = true; ;
+			} else if (this.templeTax()) {
+				this.payDues = true;
+				this.donation = Math.round(Math.random() * 227);
+			} 
+		}
 	}
 
-	evaluatePlayer(): void {
+	evaluateVictory(): boolean {
 		let victory: number; // very low  = 10000
+		let result: boolean = false;
 		victory = this.player.victory;
 		if (this.player.duckets > victory) { 
-			this.win = true; 
-		}
-		console.log("PortComponent:evaluatePlayer:");
+			//this.win = true; 
+			result = true;
+		} 
+		return result;
+	}
+
+	templeTax(): boolean {
+		let result: boolean = false;
+		let rando: number;
+		rando = Math.random();
+		if (rando < 0.25) result = true;
+		return result;
+	}
+
+	makeDonation(): void {
+		this.payDues = false;
+		this.player.duckets = this.player.duckets - this.donation;
+	}
+
+	declineDonation(): void {
+		this.payDues = false;
+	}
+
+	duressBorrow(c): void {
+		this.player.debt = +this.player.debt + c;
+		this.payDues = false;
 	}
 }

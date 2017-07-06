@@ -51,6 +51,7 @@ import { COMMODITIES }				from './commodities';
 				</tr>
 			</table>
 		  	<input type="button" value="Start Game" routerLink="/port" />
+  			<!-- p>Turn: {{game.turn}}</p -->
 		</div>
 	`,
 	providers: [ PlayerService ]

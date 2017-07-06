@@ -1,10 +1,10 @@
 <router-outlet></router-outlet>
 
+<hr>
 
-  <h2>Diagnostics</h2>
-
+<input type="button" value="Restart" routerLink="/" />
+  <!-- h2>Diagnostics</h2>
   <div *ngIf="!atDebug">
-    <input type="button" value="Restart" routerLink="/" />
     <input type="button" value="Debug" (click)="toggleDebug()" />
   </div>
 
@@ -40,6 +40,14 @@
     <tr>
       <td>player name</td>
       <td>{{player.name}}</td>
+    </tr>
+    <tr>
+      <td>player turn</td>
+      <td>{{player.turn}}</td>
+    </tr>
+    <tr>
+      <td>player lastHome</td>
+      <td>{{player.lastHome}}</td>
     </tr>
     <tr>
       <td>Ship index</td>
@@ -78,4 +86,4 @@
       <td colspan="2"><input type="button" value="Restart" routerLink="/" /></td>
     </tr>
   </table>
-</div>
+</div -->

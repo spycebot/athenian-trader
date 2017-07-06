@@ -17,6 +17,7 @@ import { PortService }				from './port.service';
 			<h2>Money Lender in {{port.name}}</h2>
 			<p>The money lender can help in a pinch.</p>
 			<h3>Borrow</h3>
+			<p>What happens when you borrow a negative amount of money? Is it exactly the same as lending, which is over-paying?</p>
 			<input type="button" value="{{maxBorrow() / 4 | number:'1.0-0'}}" (click)="borrow(maxBorrow() / 4)" />
 			<input type="button" value="{{maxBorrow() / 2 | number:'1.0-0'}}" (click)="borrow(maxBorrow() / 2)" />
 			<input type="button" value="{{maxBorrow() * 3 / 4 | number:'1.0-0'}}" (click)="borrow(maxBorrow() * 3 / 4)" />

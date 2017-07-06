@@ -9,6 +9,8 @@ export class Player {
     warehouse?: number[];
     size?: number;
     debt?: number;
+    turn?: number;
+    lastHome?: number;
 
   	constructor() {
 	  	this.id = 0;
@@ -18,5 +20,7 @@ export class Player {
 	  	this.currentPort = 0;
 	  	this.ship = 0;
       this.victory = 0;
+      this.turn = 0;
+      this.lastHome = 0;
   	}
   }
