@@ -5,7 +5,7 @@ import { Location }					from '@angular/common';
 @Component({
 	selector: 'splash',
 	template: `
-		<div style="text-align:center">
+		<div>
 		  <h1>
 		   {{title}}
 		  </h1>

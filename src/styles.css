@@ -3,7 +3,7 @@ td { cursor: pointer; }
 @import url(https://fonts.googleapis.com/css?family=Bubblegum+Sans|Mirza|Overlock|Port+Lligat+Sans|Skranji);
 
 p {
-	font-family: 'Overlock', cursive;; 
+	font-family: 'Overlock', cursive; width: 256px; 
 }
 
 h1 {
@@ -22,9 +22,11 @@ table { font-family: 'Overlock', cursive; }
 
 input { font-family: 'Overlock', monospace; font-size: 1.4em; }
 
-input[type="button"] {  }
+input[type="button"] { border-radius: 6px;  }
 
 label { font-family: 'Overlock', monospace;  }
 
+ul { list-style-type: none; }
+
 /* button { width : 100%; } */
-#builtBy { font-size: 12px; }
+#builtBy { font-size: 12px;  text-align: center}
