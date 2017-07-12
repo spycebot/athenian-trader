@@ -15,9 +15,8 @@ import { PortService }				from './port.service';
 	template: `
 		<div>
 			<h2>Money Lender in {{port.name}}</h2>
-			<p>The money lender can help in a pinch.</p>
+			<p>The money lender can help in a pinch. He is not what I would call 'straight forward', but the duckets are valid tender.</p>
 			<h3>Borrow</h3>
-			<p>What happens when you borrow a negative amount of money? Is it exactly the same as lending, which is over-paying?</p>
 			<input type="button" value="{{maxBorrow() / 4 | number:'1.0-0'}}" (click)="borrow(maxBorrow() / 4)" />
 			<input type="button" value="{{maxBorrow() / 2 | number:'1.0-0'}}" (click)="borrow(maxBorrow() / 2)" />
 			<input type="button" value="{{maxBorrow() * 3 / 4 | number:'1.0-0'}}" (click)="borrow(maxBorrow() * 3 / 4)" />

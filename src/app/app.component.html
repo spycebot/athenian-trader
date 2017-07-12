@@ -1,9 +1,10 @@
 <router-outlet></router-outlet>
-
+<hr>
+<input type="button" value="Restart" routerLink="/" />
+<p>Turn: {{player.turn}}</p>
 
   <!-- h2>Diagnostics</h2>
   <div *ngIf="!atDebug">
-    <input type="button" value="Restart" routerLink="/" />
     <input type="button" value="Debug" (click)="toggleDebug()" />
   </div>
 

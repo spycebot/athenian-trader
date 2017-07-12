@@ -22,7 +22,7 @@ import { RANKINGS }			from './rankings';
 		  <input type="button" value="Rankings" (click)="showRankings()" />
 		  <p>Rank achieved: {{achieveLevel}}</p>
 		  <div *ngIf="showRanking">
-		  	<p>You will be remembered as a <em>{{restateHardness()}}</em> of the stature of <em>{{rankings[rank]}}</em>.</p>
+		  	<p>You will be remembered as a <strong>{{restateHardness()}}</strong> of the stature of <strong>{{rankings[rank]}}</strong>.</p>
 		  	<table>
 		  		<tr>
 		  			<th>Target</th><th>Stature</th>
@@ -60,7 +60,7 @@ export class WinComponent {
 	}
 
 	showRankings(): void {
-		this.showRanking = true;
+		this.showRanking = !this.showRanking;
 	}
 
 	calcVictoryRank(i): number {

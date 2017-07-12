@@ -92,6 +92,7 @@ export class NewGameComponent {
 		this.player.size = 1000;
 		this.player.debt = 0;
 		this.startWithDebt = false;
+		this.player.turn = 1;
 	}
 
 	setVictory(t: number):void {
